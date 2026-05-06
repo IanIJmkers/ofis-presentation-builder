@@ -1,0 +1,723 @@
+/* ───────────────────────────────────────────────────────
+   OFIS / Orchestra slide design system.
+   Copied + consolidated from the hand-coded presentations
+   so the React renderer matches the existing output.
+   ─────────────────────────────────────────────────────── */
+
+.slide,
+.slide *,
+.slide *::before,
+.slide *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+.slide {
+  width: var(--slide-w);
+  height: var(--slide-h);
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--text-dark);
+}
+
+/* ── Bars ── */
+.slide .top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: var(--primary);
+  z-index: 3;
+}
+
+.slide .bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--grey-medium);
+  z-index: 3;
+}
+
+/* ── Logo ── */
+.slide .logo {
+  position: absolute;
+  top: 45px;
+  right: 60px;
+  z-index: 4;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.slide .logo img {
+  height: 38px;
+  width: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.slide.slide--title .logo img,
+.slide.slide--divider-dark .logo img,
+.slide.slide--dark-image-text .logo img {
+  height: 44px;
+}
+
+.slide.slide--contact .contact-logo img {
+  max-width: 380px;
+  max-height: 280px;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.slide .logo-icon {
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+}
+
+/* ── Slide number ── */
+.slide .slide-num {
+  position: absolute;
+  bottom: 25px;
+  right: 60px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: monospace;
+  color: var(--primary);
+  z-index: 4;
+}
+
+/* ── Typography ── */
+.slide h1 {
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.slide h2 {
+  font-size: 2.8rem;
+  color: var(--primary);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  letter-spacing: -0.5px;
+}
+
+.slide .subtitle {
+  font-size: 1.2rem;
+  color: var(--text-grey);
+  margin-bottom: 40px;
+  display: block;
+  border-bottom: 2px solid var(--grey-medium);
+  padding-bottom: 15px;
+  width: 100%;
+  font-weight: 500;
+}
+
+.slide h3 {
+  font-size: 1.4rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.slide p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.slide p:last-child {
+  margin-bottom: 0;
+}
+
+.slide strong {
+  color: var(--primary);
+}
+
+.slide ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.slide li {
+  margin-bottom: 15px;
+  padding-left: 30px;
+  position: relative;
+  color: var(--text-dark);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.slide li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1.5rem;
+  line-height: 1rem;
+  top: 5px;
+}
+
+/* ── Accent line ── */
+.slide .accent-line {
+  width: 80px;
+  height: 4px;
+  background: var(--accent);
+  margin-bottom: 30px;
+}
+
+/* ── Content wrapper ── */
+.slide .content-wrap {
+  padding: 90px 80px 60px 80px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Two-column ── */
+.slide .two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  flex: 1;
+}
+
+/* ── Accent-bar layout ── */
+.slide .accent-layout {
+  display: flex;
+  height: 100%;
+}
+
+.slide .accent-layout-body {
+  flex: 1;
+  padding: 90px 72px 60px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide .accent-bar {
+  width: 8px;
+  flex-shrink: 0;
+}
+
+.slide .accent-bar--green { background: #3a7233; }
+.slide .accent-bar--teal { background: #2a8a9a; }
+.slide .accent-bar--gold { background: var(--accent); }
+.slide .accent-bar--primary { background: var(--primary); }
+.slide .accent-bar--purple { background: #6b4c9a; }
+
+/* ── Title slide ── */
+.slide.slide--title {
+  background: var(--primary);
+  color: var(--white);
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 100px;
+}
+
+.slide.slide--title .deco-line {
+  width: 150px;
+  height: 8px;
+  background: var(--accent);
+  margin-bottom: 40px;
+}
+
+.slide.slide--title h1 {
+  font-size: 6.8rem;
+  font-weight: 300;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+  line-height: 1;
+  color: var(--white);
+}
+
+.slide.slide--title .title-logo {
+  display: block;
+  height: 140px;
+  width: auto;
+  max-width: 70%;
+  margin-bottom: 24px;
+  image-rendering: -webkit-optimize-contrast;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.slide.slide--title .title-subtitle {
+  color: #e0e0e0;
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.slide.slide--title .title-footer {
+  position: absolute;
+  bottom: 50px;
+  left: 100px;
+  font-size: 1rem;
+  opacity: 0.6;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+/* ── Divider light ── */
+.slide.slide--divider-light {
+  background: var(--white);
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 100px 80px 120px;
+}
+
+.slide.slide--divider-light::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: var(--accent);
+  z-index: 3;
+}
+
+.slide.slide--divider-light::after {
+  content: '';
+  position: absolute;
+  right: 70px;
+  top: 50px;
+  width: 130px;
+  height: 130px;
+  border: 3px solid rgba(212, 175, 55, 0.15);
+  border-radius: 50%;
+}
+
+.slide.slide--divider-light .divider-label {
+  font-size: 1rem;
+  color: var(--text-grey);
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.slide.slide--divider-light .divider-line {
+  width: 100px;
+  height: 5px;
+  background: var(--accent);
+  margin-bottom: 44px;
+  border-radius: 2px;
+}
+
+.slide.slide--divider-light h2 {
+  color: var(--primary);
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.35;
+  max-width: 780px;
+}
+
+/* ── Divider dark ── */
+.slide.slide--divider-dark {
+  background: var(--primary);
+  color: var(--white);
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 100px 80px 80px;
+}
+
+.slide.slide--divider-dark h2 {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.slide.slide--divider-dark .big-statement {
+  font-size: 3rem;
+  color: var(--white);
+  font-weight: 400;
+  line-height: 1.3;
+  max-width: 800px;
+}
+
+.slide.slide--divider-dark .accent-line {
+  margin-bottom: 40px;
+}
+
+.slide.slide--divider-dark .slide-num {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Card grid ── */
+.slide .card-grid {
+  display: grid;
+  gap: 28px;
+  flex: 1;
+  align-content: start;
+}
+
+.slide .card-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.slide .card-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.slide .card-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+.slide .dash-card {
+  background: var(--grey-light);
+  padding: 30px 28px;
+  border-top: 4px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+}
+
+.slide .dash-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.slide .dash-card p {
+  font-size: 1rem;
+  color: var(--text-grey);
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* ── Process steps ── */
+.slide .process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+  flex: 1;
+  align-content: start;
+}
+
+.slide .process-step {
+  position: relative;
+  padding: 24px 22px;
+  background: var(--grey-light);
+  border-top: 4px solid var(--accent);
+}
+
+.slide .process-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+.slide .process-step h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.slide .process-step p {
+  font-size: 0.95rem;
+  color: var(--text-grey);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* ── Stats container ── */
+.slide .stats-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  flex: 1;
+}
+
+.slide .stat-item {
+  border-left: 4px solid var(--accent);
+  padding-left: 24px;
+}
+
+.slide .stat-number {
+  font-size: 3.5rem;
+  color: var(--primary);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.slide .stat-label {
+  font-size: 1rem;
+  color: var(--text-grey);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── Image bleed ── */
+.slide.slide--image-bleed {
+  background: var(--white);
+}
+
+.slide .img-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide .img-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ── Table ── */
+.slide .data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+.slide .data-table thead th {
+  background: var(--primary);
+  color: white;
+  text-align: left;
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.slide .data-table thead th:first-child { border-radius: 4px 0 0 0; }
+.slide .data-table thead th:last-child { border-radius: 0 4px 0 0; }
+
+.slide .data-table tbody td {
+  padding: 12px 20px;
+  vertical-align: top;
+  border-bottom: 2px solid white;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+.slide .data-table tbody tr:nth-child(odd) td {
+  background: var(--grey-light);
+}
+
+.slide .data-table tbody tr:nth-child(even) td {
+  background: var(--white);
+}
+
+/* ── Dark text on image ── */
+.slide.slide--dark-image-text {
+  color: var(--white);
+  position: relative;
+}
+
+.slide.slide--dark-image-text .dark-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.slide.slide--dark-image-text .dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(11, 42, 72, 0.88), rgba(11, 42, 72, 0.92));
+  z-index: 1;
+}
+
+.slide.slide--dark-image-text .content-wrap {
+  position: relative;
+  z-index: 2;
+  justify-content: center;
+}
+
+.slide.slide--dark-image-text h2 {
+  color: var(--white);
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.slide.slide--dark-image-text p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.slide.slide--dark-image-text .accent-line {
+  margin-bottom: 32px;
+}
+
+/* ── Contact slide ── */
+.slide.slide--contact .contact-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 100px;
+}
+
+.slide.slide--contact .contact-logo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide.slide--contact .contact-logo img {
+  max-width: 340px;
+  max-height: 260px;
+  object-fit: contain;
+}
+
+.slide.slide--contact .contact-divider {
+  width: 4px;
+  height: 220px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 0 60px;
+  flex-shrink: 0;
+}
+
+.slide.slide--contact .contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.slide.slide--contact .contact-details p {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--primary);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.slide.slide--contact .contact-light {
+  font-weight: 400;
+  color: var(--text-dark);
+}
+
+.slide.slide--contact .contact-details a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--grey-medium);
+}
+
+/* ── Free image overlay layer ── */
+.slide .image-overlay-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.slide .image-overlay-layer .free-image {
+  pointer-events: auto;
+}
+
+.slide .image-overlay-layer .free-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ── Resize handles (react-rnd) — only visible when image is selected ── */
+.rnd-handle {
+  display: none;
+  position: absolute;
+  background: var(--white);
+  border: 2px solid var(--accent);
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.free-image.is-selected .rnd-handle {
+  display: block;
+}
+
+.rnd-handle--corner {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.rnd-handle--edge {
+  background: var(--accent);
+  border: none;
+}
+
+.rnd-handle--top,
+.rnd-handle--bottom {
+  height: 4px;
+  width: 36px;
+  left: 50%;
+  margin-left: -18px;
+  border-radius: 2px;
+}
+
+.rnd-handle--left,
+.rnd-handle--right {
+  width: 4px;
+  height: 36px;
+  top: 50%;
+  margin-top: -18px;
+  border-radius: 2px;
+}
+
+.rnd-handle--top { top: -2px; cursor: ns-resize; }
+.rnd-handle--bottom { bottom: -2px; cursor: ns-resize; }
+.rnd-handle--left { left: -2px; cursor: ew-resize; }
+.rnd-handle--right { right: -2px; cursor: ew-resize; }
+
+.rnd-handle--top-left { top: -7px; left: -7px; cursor: nwse-resize; }
+.rnd-handle--top-right { top: -7px; right: -7px; cursor: nesw-resize; }
+.rnd-handle--bottom-left { bottom: -7px; left: -7px; cursor: nesw-resize; }
+.rnd-handle--bottom-right { bottom: -7px; right: -7px; cursor: nwse-resize; }
+
+.rnd-size-badge {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: var(--white);
+  font-family: monospace;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Editing affordances (only on screen, hidden in print) */
+.slide [data-editable]:hover {
+  outline: 1px dashed rgba(212, 175, 55, 0.7);
+  outline-offset: 2px;
+  cursor: text;
+}
